@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Image Profle</title>
+    <%- include("partials/head") -%>
+</head>
+
+<body>
+
+    <%- include("partials/navigation") %>
+    <br>
+<div class="container">
+  <div class="row">
+    <!--FORM-->
+    <div class="col-md-5 offset-md-3 text-center">
+      <div class="card">
+        <div class="card-body">
+          <form action="/edit/<%= image._id %>" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+              <input class="form-control" type="text" name="nombre" placeholder="nombre" value="<%= image.nombre %>">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="apellido" placeholder="apellido" value="<%= image.apellido %>">
+            </div>
+            <div class="form-group">
+              <img width="50%" src="/img/uploads/<%= image.filename %>"  alt="<%= image.filename %>">
+            </div>
+            <div class="form-group">
+              <div class="">
+            <input class="form-control"  type="file" id="inputGroupFile02" name="image" cols="80">
+           
+                </div>
+          </div>
+          <div class="form-group">
+              <label class=""  ><%= image.sexo %></label>
+            <select class="form-control" name="sexo">
+            
+              <option  value="Hombre">Hombre</option>
+              <option value="Mujer">Mujer</option>
+            </select>
+            
+          </div>
+            <button class="btn btn-warning" type="submit">
+              Actualizar 
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>
+

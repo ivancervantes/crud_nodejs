@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Images</title>
+    <%- include("partials/head") -%>
+</head>
+
+<body>
+    <%- include("partials/navigation") %>
+    <div>
+      <br/>
+    </div>
+    <div class="container">
+
+        <div class="row">
+          <!--FORM-->
+          <div class="col-md-4 text-center">
+            <div class="card">
+              <div class="card-body">
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <input class="form-control" type="text" name="nombre" placeholder="Nombre">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" name="apellido" cols="80"
+                      placeholder="Apellidos"
+                      >
+                  </div>
+                  <div class="form-group">
+                      <div class="">
+                        Subir foto
+                    <input class="form-control"  type="file" id="inputGroupFile02" name="image" cols="80">
+                  
+                        </div>
+                  </div>
+                  <div class="form-group">
+                    <select class="form-control" name="sexo">
+                        <option value="Hombre">Hombre</option>
+                        <option value="Mujer">Mujer</option>
+                    </select>
+                    
+                  </div>
+                  <button class="btn btn-success" type="submit">
+                    Agregar
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+      
+          <!-- LIST -->
+          <div class="card col-md-8">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>N°</th>
+                  <th>Nombre</th>
+                  <th>Apellidos</th>
+                  <th width="25%">Foto</th>
+                  <th>Sexo</th>
+                  <th>Operations</th>
+                </tr>
+              </thead>
+              <tbody>
+                    <% for(var i=0; i < images.length; i++) { %>
+                  <tr>
+                    <td><%= i + 1%></td>
+                    <td><strong><%= images[i].nombre %></strong></td>
+                    <td><%= images[i].apellido %></td>
+                    <td><img width="100%" src="/img/uploads/<%= images[i].filename %>"  alt="<%= images[i].filename %>"></td>
+                    <td><%= images[i].sexo %></td>
+                    <td>
+                      
+                      <a href="/image/<%= images[i]._id%>/delete"
+                        class="btn btn-danger">
+                        Eliminar
+                      </a>
+                      <a href="/images/<%= images[i]._id %>" class="btn btn-info">
+                        Editar
+                      </a>
+                    </td>
+                  </tr>
+                  <% } %>
+              </tbody>
+            </table>
+            
+          </div>
+        </div>
+      
+      </div>
+      
+    
+
+</body>
+
+</html>
